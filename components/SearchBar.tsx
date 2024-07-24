@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import React, { useState } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 import SearchManufacturer from "./SearchManufacturer";
@@ -12,7 +12,7 @@ function SearchBar() {
 
   const router = useRouter();
 
-  const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
+  function handleSearch(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     if (manufacturer.trim() === "" && model.trim() === "") {
@@ -20,9 +20,9 @@ function SearchBar() {
     }
 
     updateSearchParams(model.toLowerCase(), manufacturer.toLowerCase());
-  };
+  }
 
-  const updateSearchParams = (model: string, manufacturer: string) => {
+  function updateSearchParams(model: string, manufacturer: string) {
     const searchParams = new URLSearchParams(window.location.search);
 
     if (model) {
@@ -40,7 +40,7 @@ function SearchBar() {
     const newPathname = `${window.location.pathname}?${searchParams.toString()}`;
 
     router.push(newPathname);
-  };
+  }
 
   return (
     <form className="searchbar" onSubmit={handleSearch}>
